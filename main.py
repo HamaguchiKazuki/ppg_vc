@@ -8,32 +8,33 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.externals import joblib
 
-from sptktools import w2r
-from extract import ext_mcep, ext_mfcc, ext_pitch, ext_logf0
-from converter import mcep2vec, mfcc2vec, pitch2vec, vec2mcep, vec2pitch, synthesize
+from sptk.sptktools import w2r
+from sptk.extract import ext_mcep, ext_mfcc, ext_pitch, ext_logf0
+from sptk.converter import mcep2vec, mfcc2vec, pitch2vec, vec2mcep, vec2pitch, synthesize
 from keras.models import load_model
 
 wname = 'konino2.wav'
 wavpath = 'main/'
 datapath = 'main/'
-
+print(os.getcwd())
 if __name__ == '__main__':
     # extract features of the source file
     root, ext = os.path.splitext(wname)
+    print('root', root, 'ext', ext)
     wname = wavpath + wname
     root = datapath + root
-    
     rname = root + '.raw'
     lf0name = root + '.lfzero'
     mfname = root + '.mfc'
     pname = root + '.pitch'
-    
+
+    # stpkのコマンドを用いてファイルを作成
     w2r(wname, rname)
     
     ext_logf0(rname, lf0name)
     ext_pitch(rname, pname)
     ext_mfcc(rname, mfname)
-    
+
     pitch = pitch2vec(pname)
     lf0 = pitch2vec(lf0name)
     mfcc = mfcc2vec(mfname)
@@ -44,20 +45,22 @@ if __name__ == '__main__':
     np.save(mfsave, mfcc)
     np.save(lf0save, lf0)
     
-    # SI-ASR
+    # SI-ASR 音素認識モデル
     FRAME_SIZE = 2000
     MFCC_SIZE = 40
     BATCH_SIZE = 32
     mfccname = root+'mf.npy'
     trainmfcc = np.load(mfccname)
-    siasr_ss = joblib.load('standard.pkl') 
+
+    siasr_ss = joblib.load('standard.pkl')
+
     trainmfcc = siasr_ss.transform(trainmfcc)
     trainmfcc = trainmfcc.reshape((1, -1, MFCC_SIZE))
     siasr_model = load_model('main/siasr_model.hdf5')
     probability = siasr_model.predict(trainmfcc, batch_size=BATCH_SIZE)
     np.save('main/resultppg.npy', probability)
     
-    # PPGs+LogF0 to std MCEP
+    # PPGs+LogF0 to std MCEP 声質変換モデル
     PHONEME_SIZE = 36
     ppgname = 'main/resultppg.npy'
     lf0name = root+'lf0.npy'

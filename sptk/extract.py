@@ -1,4 +1,6 @@
-from sptktools import execute
+from sptk.sptktools import execute
+
+# sptkのコマンドを用いて変換を行っている！
 
 def ext_mcep(rawfile, mcepfile):
 	mcepcmd = 'x2x +sf < %s | frame -l 400 -p 80 | window -l 400 -L 512 -w 1 | mcep -l 512 -m 39 -a 0.35 -e 0.00001 > %s' % (rawfile, mcepfile)

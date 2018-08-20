@@ -5,9 +5,9 @@ sys.path.append('sptk')
 
 import numpy as np
 
-from sptktools import w2r
-from extract import ext_mcep, ext_mfcc, ext_pitch, ext_f0
-from converter import mcep2vec, pitch2vec, vec2mcep, vec2pitch, synthesize
+from sptk.sptktools import w2r
+from sptk.extract import ext_mcep, ext_mfcc, ext_pitch, ext_f0
+from sptk.converter import mcep2vec, pitch2vec, vec2mcep, vec2pitch, synthesize
 
 wavpath = 'main/'
 datapath = 'main/'

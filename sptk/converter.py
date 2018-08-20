@@ -2,7 +2,7 @@ import struct
 import sys
 import numpy as np
 
-from sptktools import execute
+from sptk.sptktools import execute
 
 def mcep2vec(filename):
     mceplist = []

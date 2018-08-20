@@ -1,0 +1,328 @@
+STAT: jconf successfully finalized
+STAT: *** loading AM00 _default
+Stat: init_phmm: Reading in HMM definition
+Stat: read_binhmm: binary format HMM definition
+Stat: read_binhmm: this HMM does not need multipath handling
+Stat: init_phmm: defined HMMs:    43
+Stat: init_phmm: logical names:    43
+Stat: init_phmm: base phones:    43 used in logical
+Stat: init_phmm: finished reading HMM definitions
+STAT: *** AM00 _default loaded
+STAT: *** loading LM00 _default
+STAT: reading [./wav/038.dfa] and [./wav/038.dict]...
+Stat: init_voca: read 3 words
+STAT: done
+STAT: Gram #0 038 registered
+STAT: Gram #0 038: new grammar loaded, now mash it up for recognition
+STAT: Gram #0 038: extracting category-pair constraint for the 1st pass
+STAT: Gram #0 038: installed
+STAT: Gram #0 038: turn on active
+STAT: grammar update completed
+STAT: *** LM00 _default loaded
+STAT: ------
+STAT: All models are ready, go for final fusion
+STAT: [1] create MFCC extraction instance(s)
+STAT: *** create MFCC calculation modules from AM
+STAT: AM 0 _default: create a new module MFCC01
+STAT: 1 MFCC modules created
+STAT: [2] create recognition processing instance(s) with AM and LM
+STAT: composing recognizer instance SR00 _default (AM00 _default, LM00 _default)
+STAT: Building HMM lexicon tree
+STAT: lexicon size: 213+0=213
+STAT: coordination check passed
+STAT: multi-gram: beam width set to 200 (guess) by lexicon change
+STAT: wchmm (re)build completed
+STAT: SR00 _default composed
+STAT: [3] initialize for acoustic HMM calculation
+Stat: outprob_init: state-level mixture PDFs, use calc_mix()
+Stat: addlog: generating addlog table (size = 1953 kB)
+Stat: addlog: addlog table generated
+STAT: [4] prepare MFCC storage(s)
+STAT: All init successfully done
+
+STAT: ###### initialize input device
+----------------------- System Information begin ---------------------
+JuliusLib rev.4.4.2.1 (fast)
+
+Engine specification:
+ -  Base setup   : fast
+ -  Supported LM : DFA, N-gram, Word
+ -  Extension    :
+ -  Compiled by  : gcc -O6 -fomit-frame-pointer
+Library configuration: version 4.4.2.1
+ - Audio input
+    primary A/D-in driver   : oss (Open Sound System compatible)
+    available drivers       : oss
+    wavefile formats        : RAW and WAV only
+    max. length of an input : 320000 samples, 150 words
+ - Language Model
+    class N-gram support    : yes
+    MBR weight support      : yes
+    word id unit            : short (2 bytes)
+ - Acoustic Model
+    multi-path treatment    : autodetect
+ - External library
+    file decompression by   : gzip command
+ - Process hangling
+    fork on adinnet input   : no
+ - built-in SIMD instruction set for DNN
+    SSE AVX FMA
+    FMA is available maximum on this cpu, use it
+
+
+------------------------------------------------------------
+Configuration of Modules
+
+ Number of defined modules: AM=1, LM=1, SR=1
+
+ Acoustic Model (with input parameter spec.):
+ - AM00 "_default"
+	hmmfilename=./models/hmmdefs_monof_mix16_gid.binhmm
+
+ Language Model:
+ - LM00 "_default"
+	grammar #1:
+	    dfa  = ./wav/038.dfa
+	    dict = ./wav/038.dict
+
+ Recognizer:
+ - SR00 "_default" (AM00, LM00)
+
+------------------------------------------------------------
+Speech Analysis Module(s)
+
+[MFCC01]  for [AM00 _default]
+
+ Acoustic analysis condition:
+	       parameter = MFCC_E_D_N_Z (25 dim. from 12 cepstrum + energy, abs energy supressed with CMN)
+	sample frequency = 16000 Hz
+	   sample period =  625  (1 = 100ns)
+	     window size =  400 samples (25.0 ms)
+	     frame shift =  160 samples (10.0 ms)
+	    pre-emphasis = 0.97
+	    # filterbank = 24
+	   cepst. lifter = 22
+	      raw energy = False
+	energy normalize = False
+	    delta window = 2 frames (20.0 ms) around
+	     hi freq cut = OFF
+	     lo freq cut = OFF
+	 zero mean frame = OFF
+	       use power = OFF
+	             CVN = OFF
+	            VTLN = OFF
+
+    spectral subtraction = off
+
+ cep. mean normalization = yes, with per-utterance self mean
+ cep. var. normalization = no
+
+	 base setup from = Julius defaults
+
+------------------------------------------------------------
+Acoustic Model(s)
+
+[AM00 "_default"]
+
+ HMM Info:
+    43 models, 129 states, 129 mpdfs, 2064 Gaussians are defined
+	      model type = context dependency handling OFF
+      training parameter = MFCC_E_N_D_Z
+	   vector length = 25
+	number of stream = 1
+	     stream info = [0-24]
+	cov. matrix type = DIAGC
+	   duration type = NULLD
+	max mixture size = 16 Gaussians
+     max length of model = 5 states
+     logical base phones = 43
+       model skip trans. = not exist, no multi-path handling
+
+ AM Parameters:
+        Gaussian pruning = none (full computation)  (-gprune)
+    short pause HMM name = "sp" specified, "sp" applied (physical)  (-sp)
+  cross-word CD on pass1 = handle by approx. (use average prob. of same LC)
+
+------------------------------------------------------------
+Language Model(s)
+
+[LM00 "_default"] type=grammar
+
+ DFA grammar info:
+      4 nodes, 3 arcs, 3 terminal(category) symbols
+      category-pair matrix: 16 bytes (448 bytes allocated)
+
+ Vocabulary Info:
+        vocabulary size  = 3 words, 71 models
+        average word len = 23.7 models, 71.0 states
+       maximum state num = 207 nodes per word
+       transparent words = not exist
+       words under class = not exist
+
+ Parameters:
+   found sp category IDs =
+
+------------------------------------------------------------
+Recognizer(s)
+
+[SR00 "_default"]  AM00 "_default"  +  LM00 "_default"
+
+ Lexicon tree:
+	 total node num =    213
+	  root node num =      3
+	  leaf node num =      3
+
+	(-penalty1) IW penalty1 = +0.0
+	(-penalty2) IW penalty2 = +0.0
+	(-cmalpha)CM alpha coef = 0.050000
+
+ Search parameters: 
+	    multi-path handling = no
+	(-b) trellis beam width = 200 (-1 or not specified - guessed)
+	(-bs)score pruning thres= disabled
+	(-n)search candidate num= 1
+	(-s)  search stack size = 500
+	(-m)    search overflow = after 2000 hypothesis poped
+	        2nd pass method = searching sentence, generating N-best
+	(-b2)  pass2 beam width = 30
+	(-lookuprange)lookup range= 5  (tm-5 <= t <tm+5)
+	(-sb)2nd scan beamthres = 80.0 (in logscore)
+	(-n)        search till = 1 candidates found
+	(-output)    and output = 1 candidates out of above
+	 output phoneme alignments
+	 all possible words will be expanded in 2nd pass
+	 build_wchmm2() used
+	 lcdset limited by word-pair constraint
+	short pause segmentation = off
+	fall back on search fail = off, returns search failure
+
+------------------------------------------------------------
+Decoding algorithm:
+
+	1st pass input processing = buffered, batch
+	1st pass method = 1-best approx. generating indexed trellis
+	output word confidence measure based on search-time scores
+
+------------------------------------------------------------
+FrontEnd:
+
+ Input stream:
+	             input type = waveform
+	           input source = waveform file
+	          input filelist = (none, get file name from stdin)
+	          sampling freq. = 16000 Hz required
+	         threaded A/D-in = supported, off
+	   zero frames stripping = on
+	         silence cutting = off
+	    long-term DC removal = off
+	    level scaling factor = 1.00 (disabled)
+	      reject short input = off
+	      reject  long input = off
+
+----------------------- System Information end -----------------------
+
+Notice for feature extraction (01),
+	*************************************************************
+	* Cepstral mean normalization for batch decoding:           *
+	* per-utterance mean will be computed and applied.          *
+	*************************************************************
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: ./wav/038.wav
+STAT: 146008 samples (9.13 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: w_0 w_1 w_2
+pass1_best_wordseq: 0 1 2
+pass1_best_phonemeseq: silB | f u sh i g i n a k a N m e: t o f u i o ts u k a r e r u ky o: i o o b o e r u t o k i k a N j o: i ny u: s e z u n i w a i r a r e n a k a q t a | silE
+pass1_best_score: -23134.896484
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 3 generated, 3 pushed, 4 nodes popped in 911
+ALIGN: === phoneme alignment begin ===
+sentence1: w_0 w_1 w_2
+wseq1: 0 1 2
+phseq1: silB | f u sh i g i n a k a N m e: t o f u i o ts u k a r e r u ky o: i o o b o e r u t o k i k a N j o: i ny u: s e z u n i w a i r a r e n a k a q t a | silE
+cmscore1: 1.000 1.000 1.000
+score1: -23134.824219
+=== begin forced alignment ===
+-- phoneme alignment --
+ id: from  to    n_score    unit
+ ----------------------------------------
+[   0   16]  -23.527027  silB
+[  17   21]  -28.988794  f
+[  22   24]  -31.772257  u
+[  25   36]  -24.017893  sh
+[  37   43]  -28.333792  i
+[  44   49]  -30.129923  g
+[  50   57]  -25.518402  i
+[  58   65]  -26.727203  n
+[  66   78]  -25.035362  a
+[  79   98]  -26.041027  k
+[  99  107]  -24.723524  a
+[ 108  126]  -22.487947  N
+[ 127  130]  -26.210449  m
+[ 131  147]  -20.689625  e:
+[ 148  163]  -25.701050  t
+[ 164  175]  -25.673361  o
+[ 176  211]  -24.750746  f
+[ 212  217]  -26.753580  u
+[ 218  230]  -24.462589  i
+[ 231  248]  -26.004395  o
+[ 249  261]  -27.748985  ts
+[ 262  264]  -29.249186  u
+[ 265  270]  -27.131674  k
+[ 271  280]  -24.894531  a
+[ 281  284]  -25.008057  r
+[ 285  296]  -23.794516  e
+[ 297  302]  -27.051188  r
+[ 303  318]  -25.099487  u
+[ 319  345]  -26.023836  ky
+[ 346  362]  -23.310375  o:
+[ 363  374]  -26.580566  i
+[ 375  407]  -26.749290  o
+[ 408  414]  -31.703264  o
+[ 415  423]  -27.929146  b
+[ 424  435]  -24.750162  o
+[ 436  445]  -23.965723  e
+[ 446  450]  -25.277538  r
+[ 451  459]  -26.913412  u
+[ 460  470]  -25.692827  t
+[ 471  476]  -27.149088  o
+[ 477  491]  -26.301888  k
+[ 492  509]  -26.949924  i
+[ 510  547]  -24.776085  k
+[ 548  557]  -26.157324  a
+[ 558  574]  -26.929745  N
+[ 575  583]  -28.274088  j
+[ 584  609]  -25.277794  o:
+[ 610  630]  -29.513161  i
+[ 631  650]  -23.560644  ny
+[ 651  671]  -23.520462  u:
+[ 672  690]  -26.219059  s
+[ 691  697]  -26.902903  e
+[ 698  706]  -26.933159  z
+[ 707  710]  -23.881348  u
+[ 711  721]  -24.720348  n
+[ 722  725]  -26.422852  i
+[ 726  735]  -25.015039  w
+[ 736  747]  -26.301596  a
+[ 748  757]  -29.285742  i
+[ 758  763]  -28.565430  r
+[ 764  772]  -24.781900  a
+[ 773  778]  -27.107096  r
+[ 779  787]  -21.559029  e
+[ 788  794]  -25.921597  n
+[ 795  805]  -25.704901  a
+[ 806  814]  -25.810112  k
+[ 815  820]  -26.138021  a
+[ 821  851]  -21.828691  q
+[ 852  856]  -26.076954  t
+[ 857  864]  -26.840576  a
+[ 865  910]  -22.640583  silE
+re-computed AM score: -23134.896484
+=== end forced alignment ===
+
+
+------
+### read waveform input

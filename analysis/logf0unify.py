@@ -8,19 +8,18 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.externals import joblib
 
-from sptktools import w2r
-from extract import ext_mcep, ext_mfcc, ext_pitch, ext_f0, ext_logf0
-from converter import mcep2vec, mfcc2vec, pitch2vec, vec2pitch
+from sptk.sptktools import w2r
+from sptk.extract import ext_mcep, ext_mfcc, ext_pitch, ext_f0, ext_logf0
+from sptk.converter import mcep2vec, mfcc2vec, pitch2vec, vec2pitch
 
 lf0path = 'target/'
 datapath = 'target/'
-sourcefile = 'data/a01lf0.npy'
+sourcefile = 'data/001lf0.npy'
 
 SR = 16000
 EXP = 1e+6
 
 if __name__ == '__main__':
-    """
     lf0list = []
     for file in os.listdir(lf0path):
         if fnmatch.fnmatch(file, '*lf0.npy'):
@@ -33,7 +32,7 @@ if __name__ == '__main__':
     
     meanstd = np.array([targetlf0.mean(), targetlf0.std()])
     np.save('meanstd.npy', meanstd)
-    """
+
     meanstd = np.load('meanstd.npy')
     mean = meanstd[0]
     std = meanstd[1]

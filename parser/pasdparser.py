@@ -36,7 +36,7 @@ sublist = [r'<.*?>', r'＜.*?＞', r'{.*?}', r'#.*?#', r'\+.*?\+', r'tut[0-9]+']
 splist2 = ['、', '。', '-', '．', '{comma}', '*pause*', '*silence*', '{period}', \
              '{quest}','pencil', '#', 'h', '[', ']', '(', ')', '（', '）', '［', '］', '｛', '｝', '/cg/', '/lg/', \
              '/ls/', '/', '+', '？']
-def kan2txt(filename, univ):
+def kan2txt(filename: object, univ: object) -> object:
     global txtlist
     
     root, ext = os.path.splitext(filename)
