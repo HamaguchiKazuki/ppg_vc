@@ -21,3 +21,4 @@ parser/targetdata/*
 main/*
 
 !.gitkeep
+.idea/
