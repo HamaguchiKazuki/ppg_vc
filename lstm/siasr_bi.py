@@ -14,6 +14,13 @@ MFCC_SIZE = 40
 HIDDEN_SIZE = 128
 PHONEME_SIZE = 36
 
+# callback def
+class LossHistory(Callback):
+    def on_train_begin(self, logs={}):
+        self.losses = []
+    def on_batch_end(self, batch, logs={}):
+        self.losses.append(logs.get('loss'))
+
 if __name__ == '__main__':
     x_all = np.load('')
     y_all = np.load('')
@@ -43,7 +50,7 @@ if __name__ == '__main__':
     mc = ModelCheckpoint('', \
                                           monitor='val_loss', save_best_only=False, \
                                           save_weights_only=False, mode='auto')
-    lh = LossHistory()
+    losshist = LossHistory()
     
     model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
     model.fit(x_train, y_train, epochs=EPOCHS, batch_size=BATCH_SIZE,\
