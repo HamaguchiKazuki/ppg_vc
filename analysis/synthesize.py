@@ -1,5 +1,6 @@
 import os
 import sys
+import fnmatch
 
 sys.path.append('sptk')
 
@@ -10,11 +11,16 @@ from sptk.extract import ext_mcep, ext_mfcc, ext_pitch, ext_f0
 from sptk.converter import mcep2vec, pitch2vec, vec2mcep, vec2pitch, synthesize
 
 wavpath = 'result/'
-datapath = 'data/'
+datapath = 'target/'
 savepath = 'result/'
 
 if __name__ == '__main__':
-    wavlist = ['001.wav']
+    wavlist = []
+    for file in os.listdir(datapath):
+        if fnmatch.fnmatch(file, '*.wav'):
+            wavlist.append(file)
+
+    # wavlist = ['001.wav'] # deback
     
     for wname in wavlist:
         root, ext = os.path.splitext(wname)

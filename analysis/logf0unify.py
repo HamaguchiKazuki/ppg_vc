@@ -30,24 +30,24 @@ if __name__ == '__main__':
         tmpfl0 = np.load(lf0path+fl0name)
         targetlf0 = np.hstack((targetlf0, tmpfl0[np.where(tmpfl0>-1)]))
     
-    meanstd = np.array([targetlf0.mean(), targetlf0.std()])
-    np.save('meanstd.npy', meanstd)
+        meanstd = np.array([targetlf0.mean(), targetlf0.std()])
+        np.save('meanstd.npy', meanstd)
 
-    meanstd = np.load('meanstd.npy')
-    mean = meanstd[0]
-    std = meanstd[1]
+        meanstd = np.load('meanstd.npy')
+        mean = meanstd[0]
+        std = meanstd[1]
     
-    source = np.load(sourcefile)
-    notminus = source[np.where(source>-1)]
-    ss = StandardScaler().fit(notminus.reshape(-1, 1))
-    zero_one = ss.transform(notminus.reshape(-1, 1))
-    same_ms = zero_one.reshape(-1) * std + mean
+        source = np.load(sourcefile)
+        notminus = source[np.where(source>-1)]
+        ss = StandardScaler().fit(notminus.reshape(-1, 1))
+        zero_one = ss.transform(notminus.reshape(-1, 1))
+        same_ms = zero_one.reshape(-1) * std + mean
     
-    non0f0 = np.exp(same_ms)
-    non0pitch = SR / non0f0
-    fullpitch = np.zeros(np.shape(source))
-    fullpitch[np.where(source>-1)] = non0pitch.reshape(-1)
+        non0f0 = np.exp(same_ms)
+        non0pitch = SR / non0f0
+        fullpitch = np.zeros(np.shape(source))
+        fullpitch[np.where(source>-1)] = non0pitch.reshape(-1)
     
-    pitchname = 'result/result.pitch'
-    vec2pitch(fullpitch, pitchname)
+        pitchname = 'result/result.pitch'
+        vec2pitch(fullpitch, pitchname)
         

@@ -19,7 +19,7 @@ if __name__ == '__main__':
         if fnmatch.fnmatch(file, '*.wav'):
             wavlist.append(file)
 
-    wavlist = ['001.wav'] # debug
+    # wavlist = ['001.wav'] # debug
     
     for wname in wavlist:
         root, ext = os.path.splitext(wname)
